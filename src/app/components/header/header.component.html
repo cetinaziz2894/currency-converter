@@ -1,0 +1,17 @@
+<div class="header">
+    <a class="section-title logo" routerLink="/">
+        <img src="../../../assets/icon-search.png">
+        <span class="text-1">Curreny</span>
+        <span class="text-2">Exchange</span>
+    </a>
+    <div class="nav-items">
+        <ul>
+            <li *ngFor="let nav of nav_items" routerLinkActive="active">
+                <a class="section-title" [routerLink]="[nav.url]">{{ nav.name | uppercase }}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="section-title logout">
+        Logout
+    </div>
+</div>

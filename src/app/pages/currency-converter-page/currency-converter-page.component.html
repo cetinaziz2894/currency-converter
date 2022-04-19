@@ -1,0 +1,8 @@
+<div class="section">
+    <h1 class="page-title">I want to convert</h1>
+    <app-converter (amount)=changeAmount($event)></app-converter>
+    <app-result [amount]="amount"></app-result>
+    <mat-divider></mat-divider>
+    <app-exchange-history></app-exchange-history>
+    <app-chart></app-chart>
+</div>

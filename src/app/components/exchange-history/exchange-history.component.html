@@ -1,0 +1,51 @@
+<div class="exchange-history"  *ngIf="histories.length > 0">
+    <div class="section-title">
+        Exchange History
+    </div>
+    <div class="inputs">
+        <mat-form-field appearance="fill">
+            <mat-label>From</mat-label>
+            <mat-select [(value)]="selected" placeholder="Days">
+                <mat-option value="7" (click)="getExchangeHistory()">7 days</mat-option>
+                <mat-option value="14" (click)="getExchangeHistory()">14 days</mat-option>
+                <mat-option value="30" (click)="getExchangeHistory()">30 days</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-radio-group class="radio-custom" aria-label="Select an option">
+            <mat-radio-button value="1" [checked]="true">Table</mat-radio-button>
+            <mat-radio-button value="2">Chart</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div class="tables">
+        <table mat-table [dataSource]="histories" class="mat-elevation-z8">
+            <!-- Name Column -->
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="exchange_rate">
+                <th mat-header-cell *matHeaderCellDef> Exchange Rate </th>
+                <td mat-cell *matCellDef="let element"> {{element.rate | number : '1.6-6'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <table mat-table [dataSource]="statics" class="mat-elevation-z8">
+            <!-- Name Column -->
+            <ng-container matColumnDef="statics">
+                <th mat-header-cell *matHeaderCellDef> Statics </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="value">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> {{element.val | number : '1.6-6'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedStaticsColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedStaticsColumns;"></tr>
+        </table>
+    </div>
+</div>
