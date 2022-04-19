@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResultComponent } from './components/result/result.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { IgxCategoryChartModule, IgxLegendModule } from 'igniteui-angular-charts';
+import { LogsComponent } from './components/logs/logs.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { IgxCategoryChartModule, IgxLegendModule } from 'igniteui-angular-charts
     CurrencyConverterPageComponent,
     ConvertionHistoryPageComponent,
     ResultComponent,
-    ChartComponent
+    ChartComponent,
+    LogsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+}
+
+.actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-btn{
+    color: var(--color-primary);
+    margin-right: 20px;
+    width: fit-content;
+}
+
+.delete-btn{
+    color: var(--color-warn);
+    width: fit-content;
+}
+
+.btn{ visibility: hidden}
+tr:hover .btn{
+visibility: visible;
+}

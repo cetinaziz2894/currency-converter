@@ -8,7 +8,6 @@ import { CurrencyConverterService } from 'src/app/services/currency-converter.se
 })
 export class CurrencyConverterPageComponent implements OnInit {
   
-  errorMessage: string | undefined;
   amount!:string;
 
   constructor(private currencyService: CurrencyConverterService) {
@@ -16,23 +15,18 @@ export class CurrencyConverterPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.amount);
   }
   
   getLatestRates(): void {
-    this.errorMessage = "";
     this.currencyService.getLatestRates().subscribe({
       next: response => {
-        console.log(response)
         let currencies = Object.keys(response.rates);
-        console.log(currencies);
         this.currencyService.setCurrencies(currencies);
       },
       error: error => {
-        this.errorMessage = error;
+        console.error(error);
       },
       complete: () => {
-        // console.log(this.items);
       }
     })
   };

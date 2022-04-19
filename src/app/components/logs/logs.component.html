@@ -1,0 +1,27 @@
+<table mat-table [dataSource]="logs" class="mat-elevation-z8">
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="events">
+        <th mat-header-cell *matHeaderCellDef> Events </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element"> 
+            <div class="example-button-row actions">
+                <button class="view-btn btn" mat-icon-button aria-label="" (click)="viewConvertion(element)">
+                    <mat-icon>remove_red_eye</mat-icon> 
+                    <span>View</span>
+                </button>
+                <button class="delete-btn btn" mat-icon-button aria-label="" (click)="deleteLog(element)">
+                    <mat-icon>delete_forever</mat-icon> 
+                    <span>Delete From History</span>
+                </button>
+            </div>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,12 +1,9 @@
 <div class="container sample">
-    <div class="options vertical">
-        <span id="legendTitle">Renewable Electricity Generated</span>
-    </div>
     <div class="container">
-        <igx-category-chart height="100%" width="100%"
-            [dataSource]="data"
+        <igx-category-chart height="300px" width="400px"
+            [dataSource]="chartDate"
             chartType="Spline"
-            yAxisTitle="TWh"
+            yAxisTitle="Rate"
             toolTipType="Category">
         </igx-category-chart>
     </div>

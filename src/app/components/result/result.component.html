@@ -1,7 +1,7 @@
 <div class="result" *ngIf="rate.query">
     <div>
         <span class="page-title"> {{amount}} {{rate.query.from}} = </span>
-        <span class="page-title text-green"> {{result | number : '1.6-6'}} {{rate.query.to}}</span>        
+        <span class="page-title text-green"> {{getResult() | number : '1.6-6'}} {{rate.query.to}}</span>        
     </div>
     <p>1 {{rate.query.from}} = {{fromToResult | number : '1.6-6'}} {{rate.query.to}}</p>
     <p>1 {{rate.query.to}} = {{toFromResult | number : '1.6-6'}} {{rate.query.from}} </p>

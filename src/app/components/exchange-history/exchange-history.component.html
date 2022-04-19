@@ -12,12 +12,12 @@
             </mat-select>
         </mat-form-field>
         <mat-radio-group class="radio-custom" aria-label="Select an option">
-            <mat-radio-button value="1" [checked]="true">Table</mat-radio-button>
-            <mat-radio-button value="2">Chart</mat-radio-button>
+            <mat-radio-button value="1" [checked]="true" (click)="showComp('table')">Table</mat-radio-button>
+            <mat-radio-button value="2" (click)="showComp('chart')">Chart</mat-radio-button>
         </mat-radio-group>
     </div>
     <div class="tables">
-        <table mat-table [dataSource]="histories" class="mat-elevation-z8">
+        <table mat-table [dataSource]="histories" class="mat-elevation-z8"  *ngIf="isTableShown">
             <!-- Name Column -->
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef> Date </th>
@@ -32,6 +32,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <app-chart *ngIf="isChartShown" [chartDate]="histories"></app-chart>
         <table mat-table [dataSource]="statics" class="mat-elevation-z8">
             <!-- Name Column -->
             <ng-container matColumnDef="statics">

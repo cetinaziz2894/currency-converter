@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AppService } from './app.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,15 @@ export class CurrencyConverterService {
   rateInfo: any = new BehaviorSubject<any>({});
   histories: any = new BehaviorSubject<any>({});
   statics: any = new BehaviorSubject<any>({});
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient, private appService: AppService) { }
 
   getLatestRates(): Observable<any> {
     return this.http.get(this.baseURL + '/latest');
+  }
+
+  convertCurrency(from:string,to:string){
+    this.getRate(from,to);
   }
 
   setCurrencies(data: any) {
@@ -55,11 +61,10 @@ export class CurrencyConverterService {
     this.http.get(this.baseURL + '/convert?from=' + from + '&to=' + to).subscribe(
       {
         next: response => {
-          console.log(response);
           this.setCurrencyRate(response);
         },
         error: error => {
-          console.log(error)
+          console.error(error);
         },
         complete: () => {
         }

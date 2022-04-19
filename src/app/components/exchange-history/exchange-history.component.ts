@@ -26,6 +26,8 @@ export class ExchangeHistoryComponent implements OnInit {
   data:any = [];
   selected:string='7';
   getExchangeHistorySubcription: any;
+  isTableShown:boolean = true;
+  isChartShown!:boolean;
 
   displayedColumns: string[] = ['date', 'exchange_rate'];
   displayedStaticsColumns: string[] = ['statics','value'];
@@ -34,32 +36,33 @@ export class ExchangeHistoryComponent implements OnInit {
   constructor(private currencyService: CurrencyConverterService) {
     this.currencyService.getHistories().subscribe({
       next: (response:any) => {
-        console.log(response);
         this.histories = response;
       },
       error: (error:any) => {
         this.errorMessage = error;
       },
       complete: () => {
-        // console.log(this.items);
       }
     });
     this.currencyService.getStatistics().subscribe({
       next: (response:any) => {
-        console.log(response);
         this.statics = response;
       },
       error: (error:any) => {
         this.errorMessage = error;
       },
       complete: () => {
-        // console.log(this.items);
       }
     })
    }
 
   ngOnInit(): void {
     this.getExchangeHistory();
+  }
+
+  showComp(el:string){
+    this.isTableShown = el == 'table' ? true : false;
+    this.isChartShown = el == 'chart' ? true : false;
   }
 
   getExchangeHistory(){
@@ -72,7 +75,6 @@ export class ExchangeHistoryComponent implements OnInit {
         return of(undefined);
     }),
     ).subscribe((res: any) => {
-      console.log(res);
       if (this.data.query) {
         let historiesData:RateElement[] = [];
         let staticsData:Statics[] = [];
